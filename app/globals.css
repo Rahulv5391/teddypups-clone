@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./styles/layout.css" layer(components);
 
 /* ------------------------------------------------------------------
    Design tokens — values taken from the reference site's stylesheet
