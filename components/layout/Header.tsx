@@ -10,7 +10,7 @@ export function Header() {
     <HeaderShell>
       <div className="tp-header__bar gutter">
         <Link className="tp-header__brand" aria-label={`${site.name} — home`} href="/">
-          <Image src="/brand/logo.png" alt="" width={56} height={56} className="tp-header__logo" priority />
+          <Image src="/brand/logo.png" alt="" width={56} height={56} className="tp-header__logo" preload />
           <span className="font-plush tp-header__name">{site.shortName}</span>
         </Link>
         <nav aria-label="Main" className="tp-header__nav">

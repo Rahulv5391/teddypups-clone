@@ -12,20 +12,22 @@ export const site = {
     (process.env.VERCEL_PROJECT_PRODUCTION_URL
       ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
       : "http://localhost:3000"),
-  phone: "+971 54 167 6733",
-  phoneHref: "tel:+971541676733",
-  whatsappNumber: "971541676733",
-  email: "teddypupsadmin@gmail.com",
+  // Contact details as currently shown on the reference demo (updated by Insta Biz Web on 2026-11-02;
+  // previously the TeddyPups number +971 54 167 6733 and teddypupsadmin@gmail.com).
+  phone: "+971 50 000 0000",
+  phoneHref: "tel:+971500000000",
+  whatsappNumber: "919898124987",
+  email: "info@instabizweb.com",
   address: {
     locality: "Downtown Dubai",
     country: "United Arab Emirates",
     countryCode: "AE",
-    mapsUrl: "https://maps.app.goo.gl/ZdJvwHBSQWWZT54s7",
+    mapsUrl: "https://www.instabizweb.com/",
   },
   socials: [
-    { label: "Instagram", href: "https://www.instagram.com/teddypups.worldwide/" },
-    { label: "TikTok", href: "https://www.tiktok.com/@teddypupsuae" },
-    { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61567496944539" },
+    { label: "Instagram", href: "https://www.instabizweb.com/" },
+    { label: "TikTok", href: "https://www.instabizweb.com/" },
+    { label: "Facebook", href: "https://www.instabizweb.com/" },
   ],
   nav: [
     { label: "Home", href: "/" },
