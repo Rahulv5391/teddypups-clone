@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Design tokens — values taken from the reference site's stylesheet
+   ------------------------------------------------------------------ */
+@theme {
+  --color-cocoa: #2a170e;
+  --color-cocoa-soft: #5a3a28;
+  --color-toffee: #c2622b;
+  --color-toffee-deep: #a24a1a;
+  --color-toffee-ink: #8e3f15;
+  --color-honey: #f2be6b;
+  --color-honey-soft: #fbe3b4;
+  --color-milk: #fffdf8;
+  --color-blush: #f9cdbf;
+  --color-sky: #bfddf5;
+  --color-sky-deep: #2f6e9e;
+  --color-whatsapp: #1f7a4d;
+
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-hand: var(--font-shantell), ui-rounded, "Comic Sans MS", cursive;
+
+  --ease-pounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-silk: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-snap: cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+:root {
+  color-scheme: light;
+  --gutter: clamp(1rem, 4vw, 3.5rem);
+  --header-h: 4.75rem;
+  --bar-h: 0px;
+  accent-color: var(--color-toffee-deep);
+}
+
+@media (max-width: 1023.98px) {
+  :root {
+    --header-h: 4rem;
+    --bar-h: calc(4rem + env(safe-area-inset-bottom));
+  }
+}
+
+/* ------------------------------------------------------------------
+   Base
+   ------------------------------------------------------------------ */
+@layer base {
+  html {
+    scrollbar-gutter: stable;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+    overflow-x: clip;
+  }
+
+  body {
+    background: var(--color-milk);
+    color: var(--color-cocoa);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--color-honey);
+    color: var(--color-cocoa);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-toffee-deep);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+/* Paw cursor (pointer devices that allow motion only — same as reference) */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html,
+  body {
+    cursor: url(/cursor/paw.svg) 9 6, auto;
+  }
+  :is(a, button, summary, label, [role="button"], [role="tab"], select, input[type="checkbox"], input[type="radio"], input[type="submit"]) {
+    cursor: url(/cursor/paw-press.svg) 9 6, pointer;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Typography utilities
+   ------------------------------------------------------------------ */
+@utility font-plush {
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 0.92;
+  text-wrap: balance;
+}
+
+@utility font-plush-text {
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 100, "WONK" 0, "opsz" 36;
+}
+
+@utility font-scrawl {
+  font-family: var(--font-hand);
+  font-variation-settings: "INFM" 60, "BNCE" 30;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+/* ------------------------------------------------------------------
+   Buttons
+   ------------------------------------------------------------------ */
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3.25rem;
+    padding: 0.85rem 1.6rem;
+    border-radius: 999px;
+    font-size: 1.0625rem;
+    font-weight: 650;
+    line-height: 1.1;
+    text-decoration: none;
+    transition:
+      transform 0.35s var(--ease-pounce),
+      background-color 0.25s ease,
+      box-shadow 0.35s var(--ease-silk);
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+  .btn:active {
+    transform: translateY(2px);
+  }
+  .btn-primary {
+    background: var(--color-toffee-deep);
+    color: var(--color-milk);
+    box-shadow: 0 0.5rem 0 -0.15rem var(--color-cocoa);
+  }
+  .btn-ghost {
+    color: var(--color-cocoa);
+    border: 2px solid var(--color-cocoa);
+    background: transparent;
+  }
+  .btn-whatsapp {
+    color: #fff;
+    background: var(--color-whatsapp);
+    box-shadow: 0 0.5rem 0 -0.15rem var(--color-cocoa);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
