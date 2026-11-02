@@ -59,3 +59,15 @@ This file records every prompt in order, with a short note on what the AI did in
 - Linked the project to that team and connected the GitHub repo.
 - Pushed to `main`, which started a production deploy automatically, and confirmed it reached Ready.
 - Smoke-checked the live URL and found the social-share image URL pointed at `localhost`. It fixed this by falling back to Vercel's production-domain variable, then redeployed and verified.
+
+## Session 1, continued — Block 1: content & assets
+
+### Prompt 9
+> yes please go ahead
+
+**What the AI did:**
+- Found that the reference embeds its CMS data in the Next.js server-component payload of each page. It wrote `scripts/extract-content.mjs` to decode that payload and extract 42 puppies (15 available, 27 gone home), 64 family photos, the testimonial, 9 FAQs and the 8-breed list. The script also downloads all 205 referenced media files (about 73 MB).
+- Read the reference's client JavaScript bundle to copy its exact puppy-filter rules: URL parameters `origin`, `breed`, `gender` and `collection`; a boy-and-girl litter matching both genders; chips shown only when a puppy can match them. It also took the labels and empty-state copy from there.
+- Fixed two extraction bugs found while checking the output. Some gone-home puppies got the page title as their gender, so gender now comes from the ticket text. The home page sometimes streamed an incomplete payload, so the script now retries.
+- Upgraded `@types/node` to 24 so Vitest 5 would install, then added 11 unit tests for content integrity, filters and previous/next navigation.
+- Confirmed `next/image` serves the AVIF/JPEG/WebP sources (a 3.3 MB JPEG becomes 41 KB) and that video range requests work on the live deploy.
