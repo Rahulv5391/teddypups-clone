@@ -4,17 +4,7 @@
    ================================================================== */
 
 /* ---------- helpers ---------- */
-.gutter { padding-inline: var(--gutter); }
-.text-big { font-size: clamp(2rem, 4.2vw, 4rem); }
-.sr-only-focusable:not(:focus) { clip-path: inset(50%); width: 1px; height: 1px; position: absolute; overflow: hidden; }
 
-.link-ink {
-  color: var(--color-toffee-ink);
-  text-underline-offset: 0.2em;
-  text-decoration: underline color-mix(in oklab, var(--color-toffee) 55%, transparent);
-  text-decoration-thickness: 2px;
-}
-.link-ink:hover { text-decoration-color: currentColor; }
 
 /* ---------- header ---------- */
 .tp-header { transition: transform 0.5s var(--ease-silk); }
@@ -135,7 +125,7 @@
 .pup-stop { pointer-events: none; }
 .pup-stop > .pup-buddy { width: 100%; }
 html[data-pup] .pup-stop > .pup-buddy { visibility: hidden; }
-.pup-buddy { position: relative; pointer-events: none; }
+/* base .pup-buddy lives in the components layer (see globals.css) so utilities like `absolute` can override it */
 .pup-buddy > svg { display: block; width: 100%; height: auto; }
 .pup-bubble {
   position: absolute;

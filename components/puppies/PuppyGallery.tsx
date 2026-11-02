@@ -1,58 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Media } from "@/content/types";
 import { MediaImage } from "@/components/media/MediaImage";
+import { PrefetchNeighbours, ViewerPhoto } from "@/components/media/PhotoViewer";
 
 const PAGE_SIZES = "(min-width: 1024px) 55vw, 92vw";
-
-/** Width (px) the photo will occupy in the full-screen viewer, so we request the right size. */
-const viewerWidth = (m: Media) => Math.ceil(Math.min(innerWidth, Math.max(1, innerHeight - 150) * (m.width / m.height)));
-
-/** Full-screen photo: shows the already-loaded page image, then swaps in a sharp copy once decoded. */
-function ViewerPhoto({ media }: { media: Media }) {
-  const [sharp, setSharp] = useState(false);
-  return (
-    <>
-      <MediaImage
-        media={media}
-        sizes={PAGE_SIZES}
-        quality={85}
-        alt=""
-        eager
-        className={sharp ? "tp-viewer__first tp-viewer__first--done" : "tp-viewer__first"}
-        style={{ objectFit: "contain", objectPosition: "50% 50%", backgroundColor: "transparent" }}
-      />
-      <Image
-        src={media.url}
-        alt={media.alt}
-        fill
-        sizes={`${viewerWidth(media)}px`}
-        quality={85}
-        loading="eager"
-        className="tp-viewer__sharp object-contain"
-        data-sharp={sharp || undefined}
-        onLoad={(e) => e.currentTarget.decode().catch(() => {}).then(() => setSharp(true))}
-      />
-    </>
-  );
-}
-
-/** Warm the cache for the neighbouring photos so swiping feels instant. */
-function Prefetch({ items, at }: { items: Media[]; at: number }) {
-  const n = items.length;
-  if (n < 2) return null;
-  const idx = [...new Set([(at - 1 + n) % n, (at + 1) % n])].filter((i) => items[i].kind === "image");
-  return (
-    <span aria-hidden="true" className="sr-only">
-      {idx.map((i) => (
-        <Image key={items[i].id} src={items[i].url} alt="" fill sizes={`${viewerWidth(items[i])}px`} quality={85} loading="eager" />
-      ))}
-    </span>
-  );
-}
 
 export function PuppyGallery({ name, media }: { name: string; media: Media[] }) {
   const [index, setIndex] = useState(0);
@@ -181,10 +135,10 @@ export function PuppyGallery({ name, media }: { name: string; media: Media[] }) 
                 {current.kind === "video" ? (
                   <video src={current.url} poster={current.poster?.url} controls autoPlay playsInline className="size-full object-contain" />
                 ) : (
-                  <ViewerPhoto media={current} />
+                  <ViewerPhoto media={current} pageSizes={PAGE_SIZES} quality={85} />
                 )}
               </motion.div>
-              <Prefetch items={media} at={index} />
+              <PrefetchNeighbours items={media} at={index} quality={85} />
             </div>
             {count > 1 && (
               <div className="flex justify-center gap-3 pt-3 pb-[calc(1rem+env(safe-area-inset-bottom))]">

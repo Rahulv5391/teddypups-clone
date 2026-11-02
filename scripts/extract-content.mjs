@@ -120,7 +120,7 @@ const gone = await pool(goneSlugs, 4, async (slug, idx) => {
   return {
     id: `gone-${slug}`,
     slug,
-    name,
+    name: name === breed ? '' : name, // unnamed puppies are listed by breed (e.g. "Pomeranian")
     displayName: name,
     breed,
     gender: /girl/i.test(genderLabel) ? 'female' : 'male',
