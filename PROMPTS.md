@@ -71,3 +71,19 @@ This file records every prompt in order, with a short note on what the AI did in
 - Fixed two extraction bugs found while checking the output. Some gone-home puppies got the page title as their gender, so gender now comes from the ticket text. The home page sometimes streamed an incomplete payload, so the script now retries.
 - Upgraded `@types/node` to 24 so Vitest 5 would install, then added 11 unit tests for content integrity, filters and previous/next navigation.
 - Confirmed `next/image` serves the AVIF/JPEG/WebP sources (a 3.3 MB JPEG becomes 41 KB) and that video range requests work on the live deploy.
+
+## Block 2: layout shell
+
+### Prompt 10
+> Yes
+
+**What the AI did:**
+- Pulled the reference's header, mobile menu and footer markup, plus the matching CSS rules (with a small extractor that keeps `@media` context). It ported them into `app/styles/layout.css` with the same values.
+- Read the reference's client code for exact behaviour:
+  - The header counts as scrolled after 8px, hides when scrolling down past 220px (only for moves over 6px), and reappears on keyboard focus.
+  - The menu is a `<dialog>` with an animated close.
+  - Nav links are active on their own path and all sub-paths.
+- Found that the mascot Teddy is generated from code: fluffy-ellipse outlines, 12 named poses, and a solver that turns a pose into SVG transforms. It ported this to `lib/teddy/geometry.ts` and added unit tests asserting the output is identical to the reference SVG.
+- Fixed a Next 16 build error (`new Date()` isn't allowed during prerender) by computing the copyright year in a `"use cache"` component.
+- Compared reference and clone screenshots side by side for the header (home, scrolled, inner page), mobile header, open menu, and desktop and mobile footers. All matched.
+- Noted two global effects for block 6: the cursor paw-print trail and the route-transition curtain.
