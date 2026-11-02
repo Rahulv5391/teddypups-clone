@@ -87,3 +87,28 @@ This file records every prompt in order, with a short note on what the AI did in
 - Fixed a Next 16 build error (`new Date()` isn't allowed during prerender) by computing the copyright year in a `"use cache"` component.
 - Compared reference and clone screenshots side by side for the header (home, scrolled, inner page), mobile header, open menu, and desktop and mobile footers. All matched.
 - Noted two global effects for block 6: the cursor paw-print trail and the route-transition curtain.
+
+## Block 3: inner pages
+
+### Prompt 11
+> continue
+
+**What the AI did:**
+- Built `/puppies`, the 42 puppy detail pages, `/gone-home`, `/happy-families`, `/faq`, `/how-it-works`, `/contact` and the 404 page.
+- For each page it read the reference's rendered HTML (including Suspense-streamed parts and the client-rendered 404), its CSS rules and its client JavaScript. It then ported the behaviour precisely:
+  - **Sketch cards:** generated per puppy from a seeded random generator, and unit-tested against the reference's actual output.
+  - **Filters:** stored in the URL, with spring animation from Motion.
+  - **Gallery and photo viewer:** page-turn transition, swipe, keyboard, and a sharp-image swap.
+  - **FAQ notice board:** search with highlighting, and answers that unfold automatically.
+  - **"Two ways home" tabs.**
+  - **Flight scene:** a plane that follows its route on scroll.
+  - **Letter form:** with the envelope-and-postbox animation.
+- Added a shared Zod schema and a `sendEnquiry` server action (honeypot, rate limit). Leads go to the server log until block 4 connects real delivery.
+- Wrote small tools for the work: an SVG-to-JSX converter so illustrations carry over exactly, a CSS rule extractor, a checker that compares each rule's cascade layer with the reference, and Playwright scripts for full-page comparisons, element measurement and form tests.
+- **Bugs and differences found by comparing screenshots and measurements, and fixed:**
+  - Typography classes were in a higher-priority CSS layer than in the reference, which changed line heights. The cascade now mirrors the reference exactly.
+  - Unnamed gone-home puppies were given their breed as a name.
+  - The gone-home status badge style was wrong.
+  - Colour was missing for gone-home puppies.
+- Noticed that the reference had changed its contact details (phone, WhatsApp, email and social links now point to Insta Biz Web) and updated `content/site.ts` to match.
+- **Result:** every page matches the reference's full-page height exactly at 1440px and 375px. Both forms were tested end to end, including on production.
