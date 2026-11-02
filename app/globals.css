@@ -5,6 +5,9 @@
 @import "./styles/gone.css";
 @import "./styles/families.css";
 @import "./styles/faq.css";
+@import "./styles/how.css";
+@import "./styles/contact.css";
+@import "./styles/notfound.css";
 
 /* ------------------------------------------------------------------
    Design tokens — values taken from the reference site's stylesheet
@@ -125,6 +128,12 @@
 }
 @utility text-giant {
   font-size: clamp(3.1rem, 9.4vw, 9.75rem);
+}
+@utility text-huge {
+  font-size: clamp(2.6rem, 6.4vw, 6.25rem);
+}
+@utility measure {
+  max-width: 62ch;
 }
 @utility text-lede {
   font-size: clamp(1.125rem, 1.4vw, 1.375rem);
