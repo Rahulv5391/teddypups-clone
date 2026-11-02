@@ -115,6 +115,7 @@ const gone = await pool(goneSlugs, 4, async (slug, idx) => {
   const genderLabel = /girl/i.test(meta) ? 'Girl' : /boy/i.test(meta) ? 'Boy' : fieldAfter(rsc, 'Boy or girl');
   const age = fieldAfter(rsc, 'Age');
   const where = fieldAfter(rsc, 'Where');
+  const colour = rsc.includes('"children":"Colour"') ? fieldAfter(rsc, 'Colour') : '';
   const originSlug = /showroom|dubai/i.test(where) ? 'local' : 'imported';
   return {
     id: `gone-${slug}`,
@@ -125,7 +126,7 @@ const gone = await pool(goneSlugs, 4, async (slug, idx) => {
     gender: /girl/i.test(genderLabel) ? 'female' : 'male',
     genderLabel,
     age,
-    colour: '',
+    colour,
     description: '',
     status: 'rehomed', // same status name the reference CMS uses
     origin: { slug: originSlug, name: originSlug === 'local' ? 'In Dubai' : 'Imported' },

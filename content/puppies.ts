@@ -22,6 +22,10 @@ export function getPuppy(slug: string): Puppy | undefined {
   return all.find((p) => p.slug === slug);
 }
 
+export function getPuppyById(id: string): Puppy | undefined {
+  return all.find((p) => p.id === id);
+}
+
 export function allPuppySlugs(): string[] {
   return all.map((p) => p.slug);
 }

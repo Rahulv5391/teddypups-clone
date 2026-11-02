@@ -39,6 +39,7 @@ export const site = {
   ],
 } as const;
 
-export function whatsappLink(text = "Hi TeddyPups! I'd love to know more about your puppies.") {
+// Default message matches the reference demo's current WhatsApp links.
+export function whatsappLink(text = "Hi Insta Biz Web, I'd like to discuss a project.") {
   return `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(text)}`;
 }

@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "./styles/layout.css" layer(components);
 @import "./styles/puppies.css" layer(components);
+@import "./styles/story.css" layer(components);
 
 /* ------------------------------------------------------------------
    Design tokens — values taken from the reference site's stylesheet
