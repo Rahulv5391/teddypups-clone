@@ -2,7 +2,7 @@
 
 A clone of [puppy.instabizweb.com](https://puppy.instabizweb.com/), built for the Insta Biz Web technical assignment.
 
-- **Live site:** _added after first deploy_
+- **Live site:** https://teddypups-clone-smoky.vercel.app
 - **Plan & architecture:** [`plan.md`](./plan.md)
 - **AI prompts used:** [`PROMPTS.md`](./PROMPTS.md)
 - **Reference screenshots:** [`screenshots/`](./screenshots)

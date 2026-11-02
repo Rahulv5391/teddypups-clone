@@ -38,4 +38,24 @@ This file records every prompt in order, with a short note on what the AI did in
 - Loaded Fraunces, Figtree and Shantell Sans with the same variable-font axes as the reference.
 - Added the brand assets (logo, favicons, paw cursors) and site constants.
 - Created this log and the README.
-- Created the GitHub repo and deployed to Vercel.
+- Created the public GitHub repo `Rahulv5391/teddypups-clone` and pushed.
+- Started the Vercel deploy. It needed a newer CLI, so the AI ran the latest version through `npx` instead of upgrading the global install.
+
+### Prompt 6 (sent while the deploy was running)
+> which vercel account are we using, the email should be rahul@nebula9.ai
+
+**What the AI did:** Found the CLI was signed in to a different, personal Vercel account, where the first deploy had gone. It removed the local link to that project and asked how to proceed.
+
+### Prompt 7
+> delete the project, i ll login with the correct vercel account
+
+**What the AI did:** Confirmed the project was the one created that day, deleted only `teddypups-clone` from the wrong account (the URL now returns 404), and left the account's other projects alone.
+
+### Prompt 8
+> done
+
+**What the AI did:**
+- Checked through the Vercel API that the CLI is now signed in as `rahul@nebula9.ai`.
+- Linked the project to that team and connected the GitHub repo.
+- Pushed to `main`, which started a production deploy automatically, and confirmed it reached Ready.
+- Smoke-checked the live URL and found the social-share image URL pointed at `localhost`. It fixed this by falling back to Vercel's production-domain variable, then redeployed and verified.
